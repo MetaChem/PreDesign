@@ -58,6 +58,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.JSpinner;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.SystemColor;
 
 public class Main1 {
 
@@ -65,6 +71,7 @@ public class Main1 {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
 
 	/**
 	 * Launch the application.
@@ -113,11 +120,14 @@ public class Main1 {
 		JMenuItem mntmChemspiderToken = new JMenuItem("ChemSpider Token");
 		mnNewMenu_1.add(mntmChemspiderToken);
 		
-		JMenuItem mntmR = new JMenuItem("R");
+		JMenuItem mntmR = new JMenuItem("R?");
 		mnNewMenu_1.add(mntmR);
 		
-		JMenuItem mntmOutput = new JMenuItem("Output");
+		JMenuItem mntmOutput = new JMenuItem("Output Pathway");
 		mnNewMenu_1.add(mntmOutput);
+		
+		JMenuItem mntmMetfragParameter = new JMenuItem("MetFrag Parameter");
+		mnNewMenu_1.add(mntmMetfragParameter);
 		
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
@@ -138,8 +148,19 @@ public class Main1 {
 		panel_12.add(panel_13, BorderLayout.CENTER);
 		panel_13.setLayout(new GridLayout(0, 1, 0, 0));
 		
+		JPanel panel_18 = new JPanel();
+		panel_13.add(panel_18);
+		panel_18.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JButton btnExample = new JButton("Example");
+		panel_18.add(btnExample);
+		
+		JButton btnNewButton_1 = new JButton("Reset");
+		panel_18.add(btnNewButton_1);
+		
 		JPanel panel_14 = new JPanel();
 		panel_13.add(panel_14);
+		panel_14.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblIonization = new JLabel("Ionization");
 		panel_14.add(lblIonization);
@@ -150,7 +171,7 @@ public class Main1 {
 		
 		JPanel panel_15 = new JPanel();
 		panel_13.add(panel_15);
-		panel_15.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_15.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JButton btnAdduct = new JButton("Adduct");
 		panel_15.add(btnAdduct);
@@ -160,6 +181,7 @@ public class Main1 {
 		
 		JPanel panel_16 = new JPanel();
 		panel_13.add(panel_16);
+		panel_16.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblTolerance_2 = new JLabel("Tolerance");
 		panel_16.add(lblTolerance_2);
@@ -171,23 +193,33 @@ public class Main1 {
 		JLabel lblPpm_2 = new JLabel("ppm");
 		panel_16.add(lblPpm_2);
 		
-		JPanel panel_18 = new JPanel();
-		panel_12.add(panel_18, BorderLayout.NORTH);
-		
-		JButton btnExample = new JButton("Example");
-		btnExample.setVerticalAlignment(SwingConstants.TOP);
-		panel_18.add(btnExample);
-		
-		JButton btnNewButton_1 = new JButton("Reset");
-		panel_18.add(btnNewButton_1);
-		
 		JPanel panel_19 = new JPanel();
-		panel_19.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_19.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.add(panel_19, BorderLayout.CENTER);
-		panel_19.setLayout(new GridLayout(0, 1, 0, 0));
+		panel_19.setLayout(new BorderLayout(0, 0));
 		
 		JEditorPane editorPane = new JEditorPane();
 		panel_19.add(editorPane);
+		
+		JPanel panel_20 = new JPanel();
+		panel_20.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_19.add(panel_20, BorderLayout.SOUTH);
+		
+		JLabel lblInputFilePath = new JLabel("Input File Path");
+		lblInputFilePath.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		JButton btnNewButton_4 = new JButton("...");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		panel_20.setLayout(new BoxLayout(panel_20, BoxLayout.X_AXIS));
+		panel_20.add(lblInputFilePath);
+		panel_20.add(textField_3);
+		panel_20.add(btnNewButton_4);
 		
 		JPanel panel_17 = new JPanel();
 		panel.add(panel_17, BorderLayout.NORTH);
@@ -207,6 +239,7 @@ public class Main1 {
 		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.add(panel_4);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -235,6 +268,7 @@ public class Main1 {
 		panel_6.add(lblPpm);
 		
 		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_2.add(panel_5);
 		panel_5.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -245,22 +279,25 @@ public class Main1 {
 		JPanel panel_7 = new JPanel();
 		panel_5.add(panel_7);
 		
-		JLabel lblMethod = new JLabel("Method");
+		JLabel lblMethod = new JLabel("Putatitve ID Input");
 		panel_7.add(lblMethod);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"dfjeifj", "dfiefj", "dfje"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Top 1", "Top 3", "Top 5", "Top 10", "Top 20", "Top 30", "All"}));
 		panel_7.add(comboBox_1);
 		
-		JLabel lblTolerance_1 = new JLabel("                   Tolerance");
+		JLabel lblTolerance_1 = new JLabel("     Tolerance");
 		panel_7.add(lblTolerance_1);
 		
 		textField_1 = new JTextField();
 		panel_7.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblPpm_1 = new JLabel("ppm");
+		JLabel lblPpm_1 = new JLabel("ppm    ");
 		panel_7.add(lblPpm_1);
+		
+		JButton btnNewButton_3 = new JButton("Method\r\n");
+		panel_7.add(btnNewButton_3);
 		
 		JPanel panel_8 = new JPanel();
 		panel_8.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -268,6 +305,7 @@ public class Main1 {
 		panel_8.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_8.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new BorderLayout(0, 0));
 		
@@ -276,6 +314,7 @@ public class Main1 {
 		panel_3.add(lblConsole, BorderLayout.NORTH);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setBackground(SystemColor.inactiveCaption);
 		panel_3.add(textArea, BorderLayout.CENTER);
 		
 		JPanel panel_9 = new JPanel();
@@ -284,6 +323,7 @@ public class Main1 {
 		
 		JPanel panel_10 = new JPanel();
 		panel_9.add(panel_10);
+		panel_10.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblCore = new JLabel("Core");
 		panel_10.add(lblCore);
@@ -293,15 +333,20 @@ public class Main1 {
 		
 		JPanel panel_11 = new JPanel();
 		panel_9.add(panel_11);
+		panel_11.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		JLabel lblStart = new JLabel("Duration");
 		panel_11.add(lblStart);
 		
 		JLabel lblNewLabel_1 = new JLabel("00:00");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		panel_11.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Run");
 		panel_9.add(btnNewButton);
+		
+		JButton btnNewButton_2 = new JButton("Stop");
+		panel_9.add(btnNewButton_2);
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
