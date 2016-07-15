@@ -317,6 +317,9 @@ public class Main1 {
 		textArea.setBackground(SystemColor.inactiveCaption);
 		panel_3.add(textArea, BorderLayout.CENTER);
 		
+		JProgressBar progressBar = new JProgressBar();
+		panel_3.add(progressBar, BorderLayout.SOUTH);
+		
 		JPanel panel_9 = new JPanel();
 		panel_8.add(panel_9, BorderLayout.EAST);
 		panel_9.setLayout(new GridLayout(0, 1, 0, 0));
